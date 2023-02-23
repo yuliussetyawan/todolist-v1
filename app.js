@@ -3,13 +3,37 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  if (new Date().getDay() === 6 || new Date().getDay() === 0) {
-    res.write("It's a weekend");
-  } else {
-    res.write("Today is working day");
+  let day;
+  const today = new Date().getDay();
+  switch (today) {
+    case 1:
+      day = "Monday";
+      break;
+    case 2:
+      day = "Tuesday";
+      break;
+    case 3:
+      day = "Wednesday";
+      break;
+    case 4:
+      day = "Thursday";
+      break;
+    case 5:
+      day = "Friday";
+      break;
+    case 6:
+      day = "Saturday";
+      break;
+    case 0:
+      day = "Sunday";
+      break;
+    default:
+      day = `Error: the current day is equal to ${today}`;
   }
-  res.send();
+  res.render("list", { kindOfDay: day });
 });
 
 app.listen(3000, () => console.log("server is up and running"));
