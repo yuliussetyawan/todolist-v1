@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-include("header")-%>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
-  <title>ToDoList</title>
-</head>
 
-<body>
   <div class="box" id="heading">
     <h1>
-      <%= kindOfDay %>
+      <%= listTitle %>
     </h1>
   </div>
 
@@ -25,17 +16,18 @@
       <% } %>
 
     <form method="post" class="item" action="/">
-      <input type="text" id="input" name="newItem" placeholder="Add Item" />
-      <button type="submit" name="button">+</button>
+      <input type="text" id="input" name="newItem" placeholder="Add Item" autocomplete="off" />
+      <!-- value property in button will return in req.body -->
+      <button type="submit" name="list" value="<%= listTitle %>" >+</button>
     </form>
 
   </div>
  
+  <%-include("footer")-%>
 
-</body>
-
-</html>
 
 <!-- ejs tag
 <% %>     = javascript
-<%= %>    = variable -->
+<%= %>    = variable 
+<%- -%>   = layout 
+-->
